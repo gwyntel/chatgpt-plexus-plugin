@@ -1,0 +1,11 @@
+import {cp,mkdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+const [url,out]=process.argv.slice(2);
+if(!url||!out)throw Error('Usage: node scripts/build-connect-plugin.mjs https://your-plexus.example/mcp/server /absolute/new/output');
+const u=new URL(url);
+if(u.protocol!=='https:'||u.username||u.password||u.search||u.hash||!u.pathname.includes('/mcp/')||u.pathname.endsWith('/mcp/plexus'))throw Error('Provide a proxied upstream HTTPS MCP URL without credentials; the admin endpoint needs the hosted adapter.');
+const dir=resolve(out);await mkdir(dir,{recursive:false});
+await cp('plugin-connect/skills',resolve(dir,'skills'),{recursive:true});
+await writeFile(resolve(dir,'plugin.json'),JSON.stringify({$schema:'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',name:'plexus-connect',version:'0.2.0',description:'Connect a selected remote MCP server through Plexus OAuth.',extensions:{'com.openai':{interface:{displayName:'Plexus Connect',shortDescription:'Remote tools through Plexus'},onboardingSkill:'./skills/plexus-connect/SKILL.md'}}},null,2));
+await writeFile(resolve(dir,'mcp.json'),JSON.stringify({$schema:'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',mcpServers:{'plexus-connect':{type:'streamable-http',url:u.href,extensions:{'com.openai':{auth:{type:'oauth',client:{mode:'dcr'}}}}}}},null,2));
+console.log(dir);

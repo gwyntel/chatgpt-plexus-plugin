@@ -1,0 +1,1 @@
+CLI adapted from https://github.com/mcowger/plexus at commit 77922cbeb003ce9178eb2a6220dcf9af76c3571d (MIT). Changes: Node 24 runtime, explicit .ts imports, Node file reads, explicit target requirement, no redirects, 30 second request timeout, current skill text. Native admin MCP path /mcp/plexus uses x-admin-key.
