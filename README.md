@@ -50,7 +50,7 @@ The intended repository is `gwyntel/chatgpt-plexus-plugin`; the DeepWiki badge a
 node scripts/export-source.mjs /absolute/new/output-directory
 ```
 
-Inspect that tree before pushing. `plugin/skills/plexus-admin` holds the bundled administration instructions and CLI. Its setup link is for this deployed private Site; adapt it to a new deployment before distributing your own plugin. The source-pinned upstream CLI retains its MIT license in its scripts directory. Public GitHub source publication is separate from submission to the ChatGPT public plugin directory.
+Inspect that tree before pushing. `plugin/skills/plexus-admin` holds the bundled administration instructions and CLI. Its setup link is an example placeholder; replace it with your deployed private Site's URL before attaching the skill to your plugin. The source-pinned upstream CLI retains its MIT license in its scripts directory. Public GitHub source publication is separate from submission to the ChatGPT public plugin directory.
 
 `PUBLIC_ORIGIN` must be set to the public HTTPS origin of your Site. It is used for redirects and origin checks behind the hosting proxy. The adapter does not follow upstream redirects, so configure the final HTTPS Plexus base URL.
 
