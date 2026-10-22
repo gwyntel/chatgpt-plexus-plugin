@@ -23,6 +23,14 @@ Choose the installed skill for the task: Plexus management and administration (`
 
 Before using `plexus-admin`, an operator must replace the example setup URL in `skills/plexus-admin/SKILL.md` with the URL of their deployed private Site. Do not publish a Site or expose its administrator endpoint without reviewing its identity and network security. `plexus-connect` targets one configured MCP endpoint; it does not dynamically mount every upstream.
 
+## Management connection
+
+The hosted adapter translates authenticated tool calls to Plexus management MCP requests at `/mcp/plexus`, supplying the administrator key server-side in `x-admin-key`. It does not add OAuth support to Plexus itself; the built-in Plexus OAuth service for proxied MCPs does not currently authorize its management endpoint.
+
+Keys are stored in R2 encrypted with AES-256-GCM under a runtime secret, bound to the Site-scoped user identity. Browser writes require an authenticated, user-bound form token. Explicit foreign origins are rejected; null origins are supported for sandboxed or privacy-preserving browser contexts. Agent tools cannot set or retrieve the saved key.
+
+The adapter has full administrator authority over the chosen instance. The initial Site is owner-private; publishing its source does not publish credentials or grant others access to the deployment. Do not make the deployed Site public without separately reviewing its authentication and network policy.
+
 ## Source and hosting
 
 - `worker/index.js`: responsive setup page, encrypted credential storage and stateless MCP endpoint.
