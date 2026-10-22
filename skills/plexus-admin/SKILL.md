@@ -6,7 +6,7 @@ description: Configure and administer a user-selected mcowger/Plexus instance, i
 # Plexus Admin
 
 ## Setup
-Use the installed Plexus Admin OAuth tools. Start with plexus_connection_status to check the caller's saved connection. If no connection is configured, direct the user to https://your-site.example.com and have them sign in with ChatGPT, enter the Plexus base URL and administrator key in that page's password field, and select Verify and save connection. Never ask for the key in chat. Setup uses a browser on mobile or desktop and does not require the ChatGPT desktop app.
+Use the installed Plexus Admin OAuth tools. Start with plexus_connection_status to check the caller's saved connection. If no connection is configured, direct the user to the private setup URL supplied by the operator (replace the example https://your-site.example.com with the deployed private Site URL before use), and have them sign in with ChatGPT, enter the Plexus base URL and administrator key in that page's password field, and select Verify and save connection. Never ask for the key in chat. Setup uses a browser on mobile or desktop and does not require the ChatGPT desktop app.
 
 Sites authenticates this plugin's MCP connection. The private adapter stores the user's Plexus administrator key encrypted server-side, then forwards tool requests with x-admin-key to the chosen instance. This does not enable native OAuth on Plexus's management endpoint. Do not direct users to the old Plexus Admin or Plexus Admin Connected plugins for setup.
 
