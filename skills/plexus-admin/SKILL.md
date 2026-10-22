@@ -5,6 +5,9 @@ description: Configure and administer a user-selected mcowger/Plexus instance, i
 
 # Plexus Admin
 
+## Host and file portability
+This skill's primary interface is the ChatGPT Plexus Admin plugin and its MCP tools; those tools, saved-connection status, and connection UI are not provided by the skill itself and are not portable to other agents. In another host, use only a separately configured, authorized Plexus MCP connection or the bundled CLI below. If neither exists, explain the limitation rather than implying an operation succeeded. Resolve `scripts/` and `references/` from this skill's installed directory (the directory containing this `SKILL.md`), not from the agent's current working directory. A host may expose a skill directory variable or file-reading tool; otherwise ask the user to locate the installed skill. Never assume a Hermes path or tool.
+
 ## Setup
 Use the installed Plexus Admin OAuth tools. Start with plexus_connection_status to check the caller's saved connection. If no connection is configured, direct the user to the private setup URL supplied by the operator (replace the example https://your-site.example.com with the deployed private Site URL before use), and have them sign in with ChatGPT, enter the Plexus base URL and administrator key in that page's password field, and select Verify and save connection. Never ask for the key in chat. Setup uses a browser on mobile or desktop and does not require the ChatGPT desktop app.
 
