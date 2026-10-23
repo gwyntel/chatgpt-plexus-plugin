@@ -5,6 +5,9 @@ description: Connect a user-selected remote MCP server through mcowger/Plexus. U
 
 # Plexus Connect
 
+## Host portability
+This package is configured for ChatGPT's connection flow; it is not a generic MCP client and the connection UI/tool discovery are host-provided. In another agent, use a separately configured connection to the explicitly configured MCP endpoint and follow that host's authentication flow. Do not assume this skill installs, authenticates, or provides MCP tools. If the host cannot connect, report that boundary rather than substituting credentials or changing the endpoint. Resolve `references/` relative to this installed skill's directory, not the current working directory; never assume Hermes-specific paths or tools.
+
 The current connection targets the HTTPS endpoint configured in this package and uses Plexus native OAuth with dynamic registration. Complete sign-in through ChatGPT's connection flow. No desktop application or raw API-key form is required. To connect another instance or named upstream, update the verified URL through Plugin Creator; this package has no URL-template form. Do not use the reserved server name plexus: that is the administrator endpoint and belongs in Plexus Admin. The server name is a configured identifier, not an arbitrary upstream URL. Each connection targets one configured server; do not claim this plugin dynamically mounts every upstream.
 
 The default connection uses OAuth with dynamic client registration. Confirm the instance has MCP OAuth enabled and supports registration/discovery. Complete credentials and consent in the host connection UI. Never request a password or token in chat. Discover tools through the connected MCP and use the exact returned schemas; installation alone is not verification.
